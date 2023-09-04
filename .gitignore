@@ -1,0 +1,8 @@
+*.npy
+*.pth
+*.pkl
+*.ipynb
+Data_processed/
+Data_raw/
+Data_new/
+export/
