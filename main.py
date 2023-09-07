@@ -43,8 +43,8 @@ def main():
     x_test = np.load(path + '/x_test_unpick_person.npy')
     # y_test = np.load(path + '/_test_unpick_['elecle'].npy')    
     
-    elec = DataOpen.readData('/home/yunkwan/project/AI_UWB/Data_new/test',['elecle'],before_pick= True)
-    person = DataOpen.readData('/home/yunkwan/project/AI_UWB/Data_new/test',['person'],before_pick= True)   
+    elec = DataOpen.readData('/home/yunkwan/project/AI_UWB/Data_new/test 임시',['elecle'],before_pick= True)
+    # person = DataOpen.readData('/home/yunkwan/project/AI_UWB/Data_new/test',['person'],before_pick= True)   
     
     
     # x_test = np.load(path + '/x_test_unpick.npy')
