@@ -15,20 +15,12 @@ def list_files(directory):
 
     
 def list_files1(train_test_path:str, obj :str ,before_pick):
-   
     file_list = list_files(train_test_path)
-    # print(f"file_list : {file_list}")
     print(f'folder path : {train_test_path}')
     print(f'object : {obj}')
-    # print(file_list)
-    # print(train_test_path+"/"+obj)
     file_lists = [x for x in file_list if x.startswith(train_test_path+'/'+obj)]
-    
-    
-    # file_lists = list_files(file_lists[0])
-    
+
     result_stored = []
-    
     file_lists = natsort.natsorted(file_lists)
     print(file_lists)
     
@@ -79,23 +71,18 @@ def readData(path,things:list,before_pick = False):
         filelist = list_files1(path,ob,before_pick)
         # print(filelist)
         #Labeling
-        
+    
         if before_pick == False:
             # Labeling
             label = None
             
             for idx, name in enumerate(things):
-                # print(idx,name)
                 if ob in name:
                     label = np.full((len(filelist), 1), idx)
-                    # print(f'label{label}')
-                    # break
-            
+
             if label is None:
                 print(f"No matching label found for '{ob}'")
-
-            
-            
+ 
             # if ob == things[0]:
             #     label = np.full((len(filelist),1 ), 0)
             # elif name in things[1]:

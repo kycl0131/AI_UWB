@@ -2,9 +2,9 @@ import sklearn.metrics as skm
 from tsai.all import build_ts_model, accuracy ,Learner
 from tsai.models import RNN_FCN
 import matplotlib.pyplot as plt
-
+import torch
 class CustomTSModel:    
-    def __init__(self,dls):
+    def __init__(self,dls ):
 
         self.dls = dls
         MLSTM_FCN = RNN_FCN.MLSTM_FCN
@@ -82,9 +82,9 @@ class CustomTSModel:
         self.plt.close()
         
     
-        # self.dls.show_batch(sharey=True, figsize=(18,6),max_n=80,ncols=8,)
-        # self.plt.savefig('/home/yunkwan/pythonProject/temp/AI_UWB/log/train_batch.png')
-        # self.plt.close()
+        self.dls.show_batch(sharey=True, figsize=(18,6),max_n=80,ncols=8,)
+        self.plt.savefig('/home/yunkwan/pythonProject/temp/AI_UWB/log/train_batch.png')
+        self.plt.close()
         
         self.learn.show_results(sharey=True,ds_idx=0, max_n=80,ncols=3,figsize=(18,6))
         self.plt.savefig('/home/yunkwan/project/AI_UWB/log/train_result.png')
@@ -92,3 +92,12 @@ class CustomTSModel:
         
         self.learn.show_results(sharey=True, dl=self.test_dl,max_n=80,ncols=3,figsize=(18,6))
         self.plt.savefig('/home/yunkwan/project/AI_UWB/log/test_result.png')
+    def predict(self,X):
+
+        self.valid_dl = self.dls.valid
+        self.test_ds = self.valid_dl.dataset.add_test(X)# In this case I'll use X and y, but this would be your test data
+        self.test_dl = self.valid_dl.new(self.test_ds)
+        
+       
+        test_probas, test_targets, test_preds = self.learn.get_preds(dl=self.test_dl, with_decoded=True, save_preds=None, save_targs=None)
+        print(test_probas)
